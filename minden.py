@@ -1,8 +1,20 @@
-import streamlit as st
+import streamlit as st 
 import requests
 from datetime import datetime
 
-API_KEY = '3e3dc89329515ff7dda12684c994b048'
+# --- Oldal konfiguráció ---
+st.set_page_config(page_title="Foci Arbitrázs Fogadás Figyelő", layout="wide", initial_sidebar_state="expanded")
+
+st.title("🎯 Foci Arbitrázs Fogadás Figyelő")
+st.caption("Keresd meg a biztos nyeremény lehetőségét – valós idejű odds elemzés")
+
+# API kulcs bekérése
+API_KEY = st.sidebar.text_input("API kulcs megadása", type="password")
+
+if not API_KEY:
+    st.warning("Kérlek, add meg az API kulcsot a folytatáshoz.")
+    st.stop()  # Megállítja a további futást, amíg nincs kulcs
+
 REGION = 'us,us2,us_dfs,us_ex,uk,eu,au'
 MARKET = 'h2h'
 TOTAL_STAKE = 100000
